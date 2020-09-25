@@ -1,0 +1,14 @@
+import pandas as pd
+
+def users(fichero):
+    users=pd.read_csv(fichero,sep=",",decimal=",",encoding='latin_1')
+    df=pd.DataFrame(users)
+    df=df.dropna()
+    for i in range(5,24):
+        delay=(df.loc[(df['sched_dep_time']>=int(str(i)+"00"))& (df['sched_dep_time']<=int(str(i)+"59"))])[['dep_delay']]
+        print("\nEntre las {} y {}=>{}".format(i,i+1,delay.mean()))
+        
+    
+    
+users("C:\\Users\\raulm\\OneDrive\\Desktop\\Python\\nyc.csv") 
+    
